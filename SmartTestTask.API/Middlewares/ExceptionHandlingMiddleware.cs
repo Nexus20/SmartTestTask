@@ -21,6 +21,7 @@ public class ExceptionHandlingMiddleware
         {
             logger.LogWarning(exception, "Validation exception is occured");
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
+            await context.Response.WriteAsync(exception.Message);
         }
         catch (Exception exception)
         {
