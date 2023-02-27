@@ -63,7 +63,7 @@ public class ContractService : IContractService
 
     public async Task<List<ContractResult>> GetContractsAsync()
     {
-        var source = await _contractRepository.GetContractsAsync();
+        var source = await _contractRepository.GetAsync();
         return _mapper.Map<List<Contract>, List<ContractResult>>(source);
     }
 }

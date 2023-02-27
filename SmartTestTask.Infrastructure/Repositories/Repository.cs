@@ -20,4 +20,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
             .AsNoTracking()
             .SingleOrDefaultAsync(predicate);
     }
+
+    public virtual Task<List<TEntity>> GetAsync()
+    {
+        return DbContext.Set<TEntity>()
+            .AsNoTracking()
+            .ToListAsync();
+    }
 }

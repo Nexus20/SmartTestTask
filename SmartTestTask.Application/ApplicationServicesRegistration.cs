@@ -10,7 +10,10 @@ public static class ApplicationServicesRegistration
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        
         services.AddScoped<IContractService, ContractService>();
+        services.AddScoped<IIndustrialPremiseService, IndustrialPremiseService>();
+        services.AddScoped<ITechnicalEquipmentTypeService, TechnicalEquipmentTypeService>();
 
         return services;
     }

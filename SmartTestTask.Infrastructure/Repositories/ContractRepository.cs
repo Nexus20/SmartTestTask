@@ -16,7 +16,7 @@ public class ContractRepository : Repository<Contract>, IContractRepository
         await DbContext.SaveChangesAsync();
     }
 
-    public Task<List<Contract>> GetContractsAsync()
+    public override Task<List<Contract>> GetAsync()
     {
         return DbContext.Contracts
             .Include(x => x.IndustrialPremise)

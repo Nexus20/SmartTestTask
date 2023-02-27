@@ -6,4 +6,5 @@ namespace SmartTestTask.Application.Interfaces.Repositories;
 public interface IRepository<TEntity> where TEntity : Entity
 {
     Task<TEntity?> GetSingleByExpressionAsync(Expression<Func<TEntity, bool>> predicate);
+    Task<List<TEntity>> GetAsync();
 }
