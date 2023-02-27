@@ -1,3 +1,4 @@
+using SmartTestTask.API.Extensions;
 using SmartTestTask.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,4 +26,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await app.SeedDatabaseAsync();
 app.Run();
