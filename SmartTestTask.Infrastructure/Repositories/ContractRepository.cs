@@ -22,6 +22,8 @@ public class ContractRepository : IContractRepository
     public Task<List<Contract>> GetContractsAsync()
     {
         return _dbContext.Contracts
+            .Include(x => x.IndustrialPremise)
+            .Include(x => x.TechnicalEquipmentType)
             .AsNoTracking()
             .ToListAsync();
     }
