@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartTestTask.Application.Services;
+using SmartTestTask.Application.Interfaces.Services;
 using SmartTestTask.Domain.Entities;
 
 namespace SmartTestTask.Infrastructure.Services;

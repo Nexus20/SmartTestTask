@@ -1,4 +1,4 @@
-﻿namespace SmartTestTask.Application.Services;
+﻿namespace SmartTestTask.Application.Interfaces.Services;
 
 public interface IDatabaseSeeder
 {

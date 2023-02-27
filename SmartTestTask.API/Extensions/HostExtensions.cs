@@ -1,4 +1,4 @@
-﻿using SmartTestTask.Application.Services;
+﻿using SmartTestTask.Application.Interfaces.Services;
 
 namespace SmartTestTask.API.Extensions;
 
