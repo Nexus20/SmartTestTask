@@ -35,14 +35,14 @@ public class ApplicationDbContext : DbContext
     {
         var entries = ChangeTracker.Entries()
             .Where(x => x.Entity is Entity && x.State is EntityState.Added or EntityState.Modified);
-        
+
         foreach (var entry in entries)
         {
             if (entry.State == EntityState.Added)
             {
                 ((Entity)entry.Entity).CreatedAt = DateTime.UtcNow;
             }
-            
+
             ((Entity)entry.Entity).UpdatedAt = DateTime.UtcNow;
         }
     }

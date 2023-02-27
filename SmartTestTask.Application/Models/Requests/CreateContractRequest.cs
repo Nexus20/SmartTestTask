@@ -5,9 +5,9 @@ namespace SmartTestTask.Application.Models.Requests;
 public class CreateContractRequest
 {
     [Required]
-    public string IndustrialPremiseId { get; set; } = null!;
+    public string IndustrialPremiseCode { get; set; } = null!;
     [Required]
-    public string TechnicalEquipmentTypeId { get; set; } = null!;
+    public string TechnicalEquipmentTypeCode { get; set; } = null!;
     [Required]
     public int Count { get; set; }
 }

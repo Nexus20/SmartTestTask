@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartTestTask.Application.Interfaces.Repositories;
 using SmartTestTask.Application.Interfaces.Services;
+using SmartTestTask.Domain.Entities;
 using SmartTestTask.Infrastructure.Repositories;
 using SmartTestTask.Infrastructure.Services;
 
@@ -18,8 +19,10 @@ public static class InfrastructureServicesRegistration
 
         services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
 
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IContractRepository, ContractRepository>();
-        
+        services.AddScoped<IRepository<IndustrialPremise>, IndustrialPremiseRepository>();
+
         return services;
     }
 }
