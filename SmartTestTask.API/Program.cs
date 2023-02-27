@@ -1,4 +1,5 @@
 using SmartTestTask.API.Extensions;
+using SmartTestTask.API.Middlewares;
 using SmartTestTask.Application;
 using SmartTestTask.Infrastructure;
 
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
