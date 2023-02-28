@@ -52,13 +52,15 @@ public class ContractService : IContractService
         var newContract = new Contract()
         {
             Count = request.Count,
-            IndustrialPremise = industrialPremise,
-            TechnicalEquipmentType = technicalEquipmentType
+            IndustrialPremiseId = industrialPremise.Id,
+            TechnicalEquipmentTypeId = technicalEquipmentType.Id
         };
 
         await _contractRepository.CreateContractAsync(newContract);
 
-        return _mapper.Map<Contract, ContractResult>(newContract);
+        newContract = await _contractRepository.GetSingleByExpressionAsync(x => x.Id == newContract.Id);
+        
+        return _mapper.Map<Contract, ContractResult>(newContract!);
     }
 
     public async Task<List<ContractResult>> GetContractsAsync()

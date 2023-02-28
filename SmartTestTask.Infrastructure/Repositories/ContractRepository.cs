@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using SmartTestTask.Application.Interfaces.Repositories;
 using SmartTestTask.Domain.Entities;
 
@@ -23,5 +24,14 @@ public class ContractRepository : Repository<Contract>, IContractRepository
             .Include(x => x.TechnicalEquipmentType)
             .AsNoTracking()
             .ToListAsync();
+    }
+
+    public override Task<Contract?> GetSingleByExpressionAsync(Expression<Func<Contract, bool>> predicate)
+    {
+        return DbContext.Contracts
+            .Include(x => x.IndustrialPremise)
+            .Include(x => x.TechnicalEquipmentType)
+            .AsNoTracking()
+            .SingleOrDefaultAsync(predicate);
     }
 }

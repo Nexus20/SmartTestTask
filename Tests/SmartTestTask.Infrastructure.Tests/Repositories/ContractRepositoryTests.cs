@@ -77,13 +77,15 @@ public class ContractRepositoryTests
         // Arrange
         var expectedResult = await _dbContext.Contracts
             .AsNoTracking()
+            .Include(x => x.IndustrialPremise)
+            .Include(x => x.TechnicalEquipmentType)
             .SingleOrDefaultAsync(x => x.Id == "1");
 
         // Act
         var actualResult = await _contractRepository.GetSingleByExpressionAsync(x => x.Id == "1");;
 
         // Assert
-        actualResult.Should().BeEquivalentTo(expectedResult);
+        actualResult.Should().BeEquivalentTo(expectedResult, o => o.IgnoringCyclicReferences());
     }
     
     [Test]

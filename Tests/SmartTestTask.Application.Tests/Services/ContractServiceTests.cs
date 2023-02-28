@@ -177,6 +177,15 @@ public class ContractServiceTests
                 m.GetSingleByExpressionAsync(It.IsAny<Expression<Func<IndustrialPremise, bool>>>()))
             .ReturnsAsync(_testIndustrialPremises.First(x => x.Code == industrialPremiseCode));
 
+        _contractRepositoryMock.Setup(m =>
+                m.GetSingleByExpressionAsync(It.IsAny<Expression<Func<Contract, bool>>>()))
+            .ReturnsAsync(new Contract()
+            {
+                Count = request.Count,
+                TechnicalEquipmentType = _testTechnicalEquipmentTypes.First(x => x.Code == technicalEquipmentTypeCode),
+                IndustrialPremise = _testIndustrialPremises.First(x => x.Code == industrialPremiseCode)
+            });
+
         // Act
         var actualResult = await _contractService.CreateContractAsync(request);
 
