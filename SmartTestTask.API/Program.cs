@@ -22,25 +22,27 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartTestTask", Version = "v1" });
     options.CustomSchemaIds(type => type.ToString());
-    options.AddSecurityDefinition("ApiKeyAuth", new OpenApiSecurityScheme {
+    options.AddSecurityDefinition("ApiKeyAuth", new OpenApiSecurityScheme
+    {
         Type = SecuritySchemeType.ApiKey,
         Name = "ApiKey",
         Scheme = "apikey",
         Description = "Please insert API Key string into field",
         In = ParameterLocation.Header
     });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement {
-        { 
-            new OpenApiSecurityScheme 
-            { 
-                Reference = new OpenApiReference 
-                { 
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "ApiKeyAuth" 
-                } 
+                    Id = "ApiKeyAuth"
+                }
             },
-            new [] {"SmartTestTask"}
-        } 
+            new[] { "SmartTestTask" }
+        }
     });
 });
 
@@ -60,10 +62,9 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
