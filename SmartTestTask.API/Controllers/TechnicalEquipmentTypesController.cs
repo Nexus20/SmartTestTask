@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartTestTask.API.Authentication;
 using SmartTestTask.Application.Interfaces.Services;
 using SmartTestTask.Application.Models.Results;
 
@@ -6,6 +7,7 @@ namespace SmartTestTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[ApiKeyAuthorize]
 public class TechnicalEquipmentTypesController : ControllerBase
 {
     private readonly ITechnicalEquipmentTypeService _technicalEquipmentTypeService;

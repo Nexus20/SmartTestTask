@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SmartTestTask.API.Authentication;
 using SmartTestTask.Application.Interfaces.Services;
 using SmartTestTask.Application.Models.Requests;
 using SmartTestTask.Application.Models.Results;
@@ -7,6 +8,7 @@ namespace SmartTestTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[ApiKeyAuthorize]
 public class ContractsController : ControllerBase
 {
     private readonly IContractService _contractService;
