@@ -39,9 +39,9 @@ public class ContractService : IContractService
         
         if(industrialPremise == null)
             throw new ValidationException(
-                $"Invalid industrial premise type code {request.IndustrialPremiseCode}. Industrial premise with such code doesn't exist");
+                $"Invalid industrial premise code {request.IndustrialPremiseCode}. Industrial premise with such code doesn't exist");
 
-        var occupiedArea = industrialPremise.Contracts?.Sum(x => x.IndustrialPremise.Area * x.Count) ?? 0;
+        var occupiedArea = industrialPremise.Contracts?.Sum(x => x.TechnicalEquipmentType.Area * x.Count) ?? 0;
         var freeArea = industrialPremise.Area - occupiedArea;
         var requestedArea = technicalEquipmentType.Area * request.Count;
 
